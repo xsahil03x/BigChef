@@ -11,6 +11,7 @@ import com.magarex.bigchef.ui.base.BaseActivity;
 import com.magarex.bigchef.util.GridSpacingItemDecoration;
 import com.magarex.bigchef.viewmodel.RecipeViewModel;
 
+
 import javax.inject.Inject;
 
 import static com.magarex.bigchef.util.AppUtils.dpToPx;
@@ -25,7 +26,6 @@ public class RecipeActivity extends BaseActivity<ActivityRecipeBinding> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recipe);
         prepareRecyclerView();
         loadRecipes();
     }

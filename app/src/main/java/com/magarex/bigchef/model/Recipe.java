@@ -1,7 +1,14 @@
 package com.magarex.bigchef.model;
 
+import android.databinding.BindingAdapter;
+import android.widget.ImageView;
+
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.magarex.bigchef.R;
+import com.magarex.bigchef.util.GlideApp;
 
 import org.parceler.Parcel;
 import org.parceler.ParcelConstructor;
@@ -26,19 +33,29 @@ public class Recipe {
     @SerializedName("servings")
     @Expose
     private int servings;
-    @SerializedName("image")
-    @Expose
-    private String image;
+    private int imageId;
 
     @ParcelConstructor
-    public Recipe(int id, String name, List<Ingredient> ingredients, List<Step> steps, int servings, String image) {
+    public Recipe(int id, String name, List<Ingredient> ingredients, List<Step> steps, int servings, int imageId) {
         this.id = id;
         this.name = name;
         this.ingredients = ingredients;
         this.steps = steps;
         this.servings = servings;
-        this.image = image;
+        this.imageId = imageId;
     }
+
+    @BindingAdapter({"android:recipeImage"})
+    public static void loadRecipeImage(ImageView view, int imageId) {
+        GlideApp.with(view.getContext())
+                .load(imageId)
+                .placeholder(R.drawable.recipe_placeholder)
+                .error(R.drawable.error_placeholder)
+                .dontAnimate()
+                .apply(RequestOptions.bitmapTransform(new RoundedCorners(8)))
+                .into(view);
+    }
+
 
     public int getId() {
         return id;
@@ -80,11 +97,11 @@ public class Recipe {
         this.servings = servings;
     }
 
-    public String getImage() {
-        return image;
+    public int getImageId() {
+        return imageId;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImageId(int imageId) {
+        this.imageId = imageId;
     }
 }

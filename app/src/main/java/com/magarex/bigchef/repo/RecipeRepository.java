@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
+import com.magarex.bigchef.R;
 import com.magarex.bigchef.api.RecipeService;
 import com.magarex.bigchef.model.Recipe;
 
@@ -11,6 +12,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -19,6 +25,9 @@ import timber.log.Timber;
 public class RecipeRepository {
 
     private RecipeService recipeService;
+    private int[] imageList = {
+            R.drawable.nutella_pie, R.drawable.brownies, R.drawable.yellow_cake, R.drawable.cheesecake
+    };
 
     @Inject
     public RecipeRepository(RecipeService recipeService) {
@@ -26,23 +35,40 @@ public class RecipeRepository {
     }
 
     public LiveData<List<Recipe>> getRecipeLiveData() {
-        final MutableLiveData<List<Recipe>> recipes = new MutableLiveData<>();
-        recipeService.getRecipes().enqueue(new Callback<List<Recipe>>() {
-            @Override
-            public void onResponse(@NonNull Call<List<Recipe>> call, @NonNull Response<List<Recipe>> response) {
-                List<Recipe> recipeList = response.body();
-                if (recipeList != null)
-                    recipes.setValue(recipeList);
-                else
-                    Timber.d("List is null");
-            }
+        final MutableLiveData<List<Recipe>> recipeList = new MutableLiveData<>();
+        recipeService.getRecipes()
+                .map(recipes -> {
+                    for (int i = 0; i < recipes.size(); i++) {
+                        recipes.get(i).setImageId(imageList[i]);
+                    }
+                    return recipes;
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<List<Recipe>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
-            @Override
-            public void onFailure(@NonNull Call<List<Recipe>> call, @NonNull Throwable t) {
-                call.cancel();
-                Timber.d(t);
-            }
-        });
-        return recipes;
+                    }
+
+                    @Override
+                    public void onNext(List<Recipe> recipes) {
+                        if (recipes != null)
+                            recipeList.setValue(recipes);
+                        else
+                            Timber.d("List is null");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Timber.d(e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Timber.d("Completed");
+                    }
+                });
+        return recipeList;
     }
 }

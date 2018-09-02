@@ -18,6 +18,6 @@ public class AppUtils {
 
     public static int dpToPx(Context context) {
         Resources r = context.getResources();
-        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, r.getDisplayMetrics()));
+        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, r.getDisplayMetrics()));
     }
 }
