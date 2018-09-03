@@ -13,7 +13,7 @@ public class BigChefApp extends DaggerApplication {
     public void onCreate() {
         super.onCreate();
         setupLeakCanary();
-        //Plant Timber
+        // Plant Timber
         Timber.plant(new Timber.DebugTree());
     }
 

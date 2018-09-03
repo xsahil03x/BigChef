@@ -1,6 +1,7 @@
 package com.magarex.bigchef.di.module;
 
 import com.magarex.bigchef.di.scope.PerActivity;
+import com.magarex.bigchef.ui.detail.RecipeDetailActivity;
 import com.magarex.bigchef.ui.main.RecipeActivity;
 
 import dagger.Module;
@@ -15,9 +16,9 @@ public abstract class ComponentBuilder {
     @ContributesAndroidInjector()
     public abstract RecipeActivity bindMainActivity();
 
-//    @PerActivity
-//    @ContributesAndroidInjector()
-//    public abstract DetailActivity bindDetailActivity();
+    @PerActivity
+    @ContributesAndroidInjector()
+    public abstract RecipeDetailActivity bindRecipeDetailActivity();
 //
 //    // Fragments
 //

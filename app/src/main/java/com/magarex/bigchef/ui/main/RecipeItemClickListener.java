@@ -2,6 +2,8 @@ package com.magarex.bigchef.ui.main;
 
 import android.view.View;
 
+import com.magarex.bigchef.model.Recipe;
+
 public interface RecipeItemClickListener {
-    void onClick(View view,int position);
+    void onClick(Recipe recipe);
 }

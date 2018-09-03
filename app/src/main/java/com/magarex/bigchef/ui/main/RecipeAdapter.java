@@ -1,6 +1,6 @@
 package com.magarex.bigchef.ui.main;
 
-import android.content.Context;
+
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -14,34 +14,13 @@ import com.magarex.bigchef.model.Recipe;
 
 import java.util.List;
 
-class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
 
-    final RecipeItemBinding mBinding;
+    private List<Recipe> mRecipes;
     private RecipeItemClickListener itemClickListener;
 
-    RecipeViewHolder(RecipeItemBinding itemBinding) {
-        super(itemBinding.getRoot());
-        this.mBinding = itemBinding;
-        mBinding.getRoot().setOnClickListener(this);
-    }
-
-    public void setItemClickListener(RecipeItemClickListener itemClickListener) {
+    RecipeAdapter(RecipeItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;
-    }
-
-    @Override
-    public void onClick(View view) {
-        itemClickListener.onClick(view, getAdapterPosition());
-    }
-}
-
-public class RecipeAdapter extends RecyclerView.Adapter<RecipeViewHolder> {
-
-    private final Context mContext;
-    private List<Recipe> mRecipes;
-
-    RecipeAdapter(Context context) {
-        this.mContext = context;
     }
 
     public void addRecipeToList(List<Recipe> recipeList) {
@@ -61,9 +40,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull final RecipeViewHolder holder, int position) {
         holder.mBinding.setRecipe(mRecipes.get(position));
-        holder.setItemClickListener((view, position1) -> {
-            // TODO : Navigate to next screen
-        });
     }
 
     @Override
@@ -72,6 +48,22 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeViewHolder> {
             return 0;
         } else {
             return mRecipes.size();
+        }
+    }
+
+    class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        final RecipeItemBinding mBinding;
+
+        RecipeViewHolder(RecipeItemBinding itemBinding) {
+            super(itemBinding.getRoot());
+            this.mBinding = itemBinding;
+            mBinding.getRoot().setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            itemClickListener.onClick(mRecipes.get(getAdapterPosition()));
         }
     }
 }

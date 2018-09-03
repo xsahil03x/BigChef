@@ -29,6 +29,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // Testing
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation "junit:junit:$junit_version"
     androidTestImplementation "com.android.support.test:runner:$test_version"
     androidTestImplementation "com.android.support.test:rules:$test_version"
@@ -86,5 +87,8 @@ dependencies {
     // Rx
     implementation "io.reactivex.rxjava2:rxandroid:$rx_version"
     implementation "io.reactivex.rxjava2:rxjava:$rx_version"
+
+    // Material Values
+    implementation "blue.aodev:material-values:$material_values_version"
 
 }
