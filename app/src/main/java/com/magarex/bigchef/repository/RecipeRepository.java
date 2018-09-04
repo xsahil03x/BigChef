@@ -1,8 +1,7 @@
-package com.magarex.bigchef.repo;
+package com.magarex.bigchef.repository;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
-import android.support.annotation.NonNull;
 
 import com.magarex.bigchef.R;
 import com.magarex.bigchef.api.RecipeService;
@@ -11,17 +10,15 @@ import com.magarex.bigchef.model.Recipe;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import timber.log.Timber;
 
+@Singleton
 public class RecipeRepository {
 
     private RecipeService recipeService;

@@ -4,7 +4,8 @@ import android.app.Application;
 
 import com.magarex.bigchef.BigChefApp;
 import com.magarex.bigchef.di.module.AppModule;
-import com.magarex.bigchef.di.module.ComponentBuilder;
+import com.magarex.bigchef.di.module.ActivityBindingModule;
+import com.magarex.bigchef.di.module.ContextModule;
 
 import javax.inject.Singleton;
 
@@ -17,7 +18,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
 @Singleton
 @Component(modules = {
         AndroidSupportInjectionModule.class,
-        ComponentBuilder.class,
+        ActivityBindingModule.class,
         AppModule.class})
 interface AppComponent extends AndroidInjector<BigChefApp> {
 

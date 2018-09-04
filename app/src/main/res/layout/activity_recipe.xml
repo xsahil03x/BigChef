@@ -12,6 +12,7 @@
             android:id="@+id/rvRecipes"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            tools:listitem="@layout/recipe_item"
             android:background="@color/colorPrimaryDark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

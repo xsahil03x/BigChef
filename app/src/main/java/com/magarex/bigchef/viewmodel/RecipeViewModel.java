@@ -1,13 +1,10 @@
 package com.magarex.bigchef.viewmodel;
 
-import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
-import android.support.annotation.NonNull;
 
 import com.magarex.bigchef.model.Recipe;
-import com.magarex.bigchef.repo.RecipeRepository;
+import com.magarex.bigchef.repository.RecipeRepository;
 
 import java.util.List;
 

@@ -7,7 +7,7 @@ import android.preference.PreferenceManager;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.magarex.bigchef.api.RecipeService;
-import com.magarex.bigchef.repo.RecipeRepository;
+import com.magarex.bigchef.repository.RecipeRepository;
 import com.magarex.bigchef.viewmodel.RecipeViewModel;
 
 import javax.inject.Singleton;
@@ -26,12 +26,6 @@ public abstract class AppModule {
     static SharedPreferences provideSharedPreferences(Application application) {
         return PreferenceManager.getDefaultSharedPreferences(application);
     }
-
-//    @Provides
-//    @Named("recipeUrl")
-//    String provideUrl() {
-//        return "https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/baking.json";
-//    }
 
     @Provides
     @Singleton

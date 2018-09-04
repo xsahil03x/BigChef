@@ -17,10 +17,10 @@ import java.util.List;
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
 
     private List<Recipe> mRecipes;
-    private RecipeItemClickListener itemClickListener;
+    private RecipeItemClickListener recipeItemClickListener;
 
-    RecipeAdapter(RecipeItemClickListener itemClickListener) {
-        this.itemClickListener = itemClickListener;
+    RecipeAdapter(RecipeItemClickListener recipeItemClickListener) {
+        this.recipeItemClickListener = recipeItemClickListener;
     }
 
     public void addRecipeToList(List<Recipe> recipeList) {
@@ -63,7 +63,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
         @Override
         public void onClick(View v) {
-            itemClickListener.onClick(mRecipes.get(getAdapterPosition()));
+            recipeItemClickListener.onClick(mRecipes.get(getAdapterPosition()));
         }
     }
 }

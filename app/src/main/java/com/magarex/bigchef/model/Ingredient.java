@@ -20,7 +20,7 @@ public class Ingredient {
     private String ingredient;
 
     @ParcelConstructor
-    public Ingredient(double quantity, String measure, String ingredient) {
+    Ingredient(double quantity, String measure, String ingredient) {
         this.quantity = quantity;
         this.measure = measure;
         this.ingredient = ingredient;
