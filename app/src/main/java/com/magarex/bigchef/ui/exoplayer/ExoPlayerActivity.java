@@ -1,6 +1,7 @@
 package com.magarex.bigchef.ui.exoplayer;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 
@@ -22,6 +23,11 @@ public class ExoPlayerActivity extends BaseActivity<ActivityExoPlayerBinding> {
     private ViewPager fragmentViewPager;
 
     @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         stepList = Objects.requireNonNull(getIntent().getExtras()).getParcelableArrayList("step");
@@ -37,7 +43,7 @@ public class ExoPlayerActivity extends BaseActivity<ActivityExoPlayerBinding> {
         mAdapter = new ExoFragmentPlayerAdapter(fragmentManager, stepList);
         fragmentViewPager = getBinding().fragmentViewPager;
         fragmentViewPager.setAdapter(mAdapter);
-        fragmentViewPager.setOffscreenPageLimit(0);
+        fragmentViewPager.setOffscreenPageLimit(12);
         fragmentViewPager.setCurrentItem(position);
         fragmentViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

@@ -32,7 +32,6 @@ public class RecipeDetailActivity extends BaseActivity<ActivityRecipeDetailBindi
     private Dialog ingredientDialog;
     private Recipe recipe;
 
-
     @Override
     protected int provideLayout() {
         return R.layout.activity_recipe_detail;

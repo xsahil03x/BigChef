@@ -1,6 +1,7 @@
 package com.magarex.bigchef.ui.exoplayer;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
@@ -17,11 +19,8 @@ import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelection;
-import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
-import com.google.android.exoplayer2.util.Util;
 import com.magarex.bigchef.R;
 import com.magarex.bigchef.databinding.FragmentExoPlayerBinding;
 import com.magarex.bigchef.model.Step;
@@ -34,6 +33,14 @@ public class ExoPlayerFragment extends BaseFragment<FragmentExoPlayerBinding> {
 
     public ExoPlayerFragment() {
 
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (savedInstanceState != null) {
+            mStep = savedInstanceState.getParcelable(getString(R.string.steps));
+        }
     }
 
     @Nullable
@@ -78,6 +85,16 @@ public class ExoPlayerFragment extends BaseFragment<FragmentExoPlayerBinding> {
     @Override
     protected int provideLayout() {
         return R.layout.fragment_exo_player;
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (exoPlayer != null && exoPlayer.getCurrentPosition() != 0) {
+            outState.putLong(getString(R.string.player_current_position), exoPlayer.getCurrentPosition());
+            outState.putBoolean(getString(R.string.player_state), exoPlayer.getPlayWhenReady());
+        }
+        outState.putParcelable(getString(R.string.steps), mStep);
     }
 
     @Override
