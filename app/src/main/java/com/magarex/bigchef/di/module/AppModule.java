@@ -1,6 +1,7 @@
 package com.magarex.bigchef.di.module;
 
 import android.app.Application;
+import android.app.FragmentManager;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 

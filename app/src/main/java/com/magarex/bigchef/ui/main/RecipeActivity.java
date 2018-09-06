@@ -62,7 +62,7 @@ public class RecipeActivity extends BaseActivity<ActivityRecipeBinding> implemen
     public void onClick(Recipe recipe) {
         Intent intent = new Intent(this, RecipeDetailActivity.class);
         Bundle recipeData = new Bundle();
-        recipeData.putParcelable("data", Parcels.wrap(recipe));
+        recipeData.putParcelable("recipe", Parcels.wrap(recipe));
         intent.putExtras(recipeData);
         startActivity(intent);
     }

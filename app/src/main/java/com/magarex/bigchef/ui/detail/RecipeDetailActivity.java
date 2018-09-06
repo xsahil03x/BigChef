@@ -1,9 +1,11 @@
 package com.magarex.bigchef.ui.detail;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,9 +17,12 @@ import com.magarex.bigchef.databinding.ActivityRecipeDetailBinding;
 import com.magarex.bigchef.model.Recipe;
 import com.magarex.bigchef.model.Step;
 import com.magarex.bigchef.ui.base.BaseActivity;
+import com.magarex.bigchef.ui.exoplayer.ExoPlayerActivity;
 
 import org.parceler.Parcels;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class RecipeDetailActivity extends BaseActivity<ActivityRecipeDetailBinding> implements StepItemClickListener {
@@ -25,6 +30,7 @@ public class RecipeDetailActivity extends BaseActivity<ActivityRecipeDetailBindi
     private RecipeIngredientsAdapter ingredientsAdapter;
     private RecipeStepAdapter stepAdapter;
     private Dialog ingredientDialog;
+    private Recipe recipe;
 
 
     @Override
@@ -35,7 +41,7 @@ public class RecipeDetailActivity extends BaseActivity<ActivityRecipeDetailBindi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Recipe recipe = Parcels.unwrap(getIntent().getParcelableExtra("data"));
+        recipe = Parcels.unwrap(getIntent().getParcelableExtra("recipe"));
         if (recipe != null) {
             ingredientDialog = new Dialog(this);
             prepareStepsRecyclerView();
@@ -49,7 +55,6 @@ public class RecipeDetailActivity extends BaseActivity<ActivityRecipeDetailBindi
             ingredientDialog.show();
         });
     }
-
 
 
     private void prepareIngredientRecyclerView() {
@@ -76,7 +81,13 @@ public class RecipeDetailActivity extends BaseActivity<ActivityRecipeDetailBindi
     }
 
     @Override
-    public void onClick(Step step) {
-
+    public void onClick(ArrayList<Step> step, int position) {
+        Intent intent = new Intent(this, ExoPlayerActivity.class);
+        Bundle recipeData = new Bundle();
+        recipeData.putParcelableArrayList("step", step);
+        recipeData.putInt("position", position);
+        recipeData.putString("recipeName", recipe.getName());
+        intent.putExtras(recipeData);
+        startActivity(intent);
     }
 }

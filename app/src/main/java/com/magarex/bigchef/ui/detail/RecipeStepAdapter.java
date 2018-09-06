@@ -11,6 +11,7 @@ import com.magarex.bigchef.R;
 import com.magarex.bigchef.databinding.StepsItemBinding;
 import com.magarex.bigchef.model.Step;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeStepAdapter extends RecyclerView.Adapter<RecipeStepAdapter.StepViewHolder> {
@@ -62,7 +63,9 @@ public class RecipeStepAdapter extends RecyclerView.Adapter<RecipeStepAdapter.St
 
         @Override
         public void onClick(View v) {
-            stepItemClickListener.onClick(mSteps.get(getAdapterPosition()));
+            ArrayList<Step> steps = new ArrayList<>();
+            steps.addAll(mSteps);
+            stepItemClickListener.onClick(steps,getAdapterPosition());
         }
     }
 }

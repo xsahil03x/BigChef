@@ -1,7 +1,10 @@
 package com.magarex.bigchef.di.module;
 
 import com.magarex.bigchef.di.scope.PerActivity;
+import com.magarex.bigchef.di.scope.PerFragment;
+import com.magarex.bigchef.ui.exoplayer.ExoPlayerActivity;
 import com.magarex.bigchef.ui.detail.RecipeDetailActivity;
+import com.magarex.bigchef.ui.exoplayer.ExoPlayerFragment;
 import com.magarex.bigchef.ui.main.RecipeActivity;
 
 import dagger.Module;
@@ -19,12 +22,17 @@ public abstract class ActivityBindingModule {
     @PerActivity
     @ContributesAndroidInjector()
     public abstract RecipeDetailActivity bindRecipeDetailActivity();
-//
-//    // Fragments
-//
-//    @PerFragment
-//    @ContributesAndroidInjector()
-//    public abstract RecipeStepFragment bindRecipeStepFragment();
+
+    @PerActivity
+    @ContributesAndroidInjector()
+    public abstract ExoPlayerActivity bindExoPlayerActivity();
+
+
+    // Fragments
+
+    @PerFragment
+    @ContributesAndroidInjector()
+    public abstract ExoPlayerFragment bindExoPlayerFragment();
 //
 //    @PerFragment
 //    @ContributesAndroidInjector()
