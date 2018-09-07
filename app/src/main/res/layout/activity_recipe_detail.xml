@@ -50,7 +50,6 @@
             android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/tvRecipeName"
@@ -61,10 +60,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:text="@{Recipe.time}"
             app:layout_constraintBottom_toBottomOf="@+id/imageView2"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toTopOf="@+id/imageView2"
-            tools:text="15 Min" />
+            tools:text="4h 10m" />
 
         <android.support.v7.widget.CardView
             android:layout_width="0dp"
@@ -72,7 +72,7 @@
             android:layout_marginBottom="16dp"
             android:layout_marginTop="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/guideline2"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
@@ -139,6 +139,28 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toBottomOf="@+id/tvRecipeName"
             bind:srcCompat="@drawable/circle_ingredients_background" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvRecipeTime"
+            app:layout_constraintStart_toEndOf="@+id/tvRecipeTime"
+            app:layout_constraintTop_toTopOf="@+id/tvRecipeTime"
+            bind:srcCompat="@drawable/ic_pie_chart" />
+
+        <TextView
+            android:id="@+id/tvCalorie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{Recipe.calorie}"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView"
+            tools:text="759 Cal" />
+
     </android.support.constraint.ConstraintLayout>
 
 </layout>

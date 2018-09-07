@@ -25,6 +25,8 @@ public class RecipeRepository {
     private int[] imageList = {
             R.drawable.nutella_pie, R.drawable.brownies, R.drawable.yellow_cake, R.drawable.cheesecake
     };
+    private String[] recipeTime = {"4h 10m", "1h", "1h 10m", "1h 5m"};
+    private String[] recipeCalorie = {"759 Cal", "183 Cal", "380 Cal", "387 Cal"};
 
     @Inject
     public RecipeRepository(RecipeService recipeService) {
@@ -37,6 +39,8 @@ public class RecipeRepository {
                 .map(recipes -> {
                     for (int i = 0; i < recipes.size(); i++) {
                         recipes.get(i).setImageId(imageList[i]);
+                        recipes.get(i).setCalorie(recipeCalorie[i]);
+                        recipes.get(i).setTime(recipeTime[i]);
                     }
                     return recipes;
                 })

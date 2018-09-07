@@ -1,12 +1,12 @@
 package com.magarex.bigchef.ui.exoplayer;
 
-import android.content.Context;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +25,8 @@ import com.magarex.bigchef.R;
 import com.magarex.bigchef.databinding.FragmentExoPlayerBinding;
 import com.magarex.bigchef.model.Step;
 import com.magarex.bigchef.ui.base.BaseFragment;
+
+import java.util.Objects;
 
 public class ExoPlayerFragment extends BaseFragment<FragmentExoPlayerBinding> {
 
@@ -52,9 +54,22 @@ public class ExoPlayerFragment extends BaseFragment<FragmentExoPlayerBinding> {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         if (mStep != null) {
+            getDataBinding().setStep(mStep);
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                Objects.requireNonNull(getActivity()).getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                        WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                getDataBinding().exoGroup.setVisibility(View.GONE);
+                ConstraintLayout.LayoutParams exoParams = (ConstraintLayout.LayoutParams) getDataBinding().recipePlayerView.getLayoutParams();
+                exoParams.height = ConstraintLayout.LayoutParams.MATCH_CONSTRAINT;
+                ConstraintLayout.LayoutParams errorParams = (ConstraintLayout.LayoutParams) getDataBinding().recipePlayerView.getLayoutParams();
+                errorParams.height = ConstraintLayout.LayoutParams.MATCH_CONSTRAINT;
+            }
             initializePlayer();
             getDataBinding().recipePlayerView.setPlayer(exoPlayer);
-            getDataBinding().setStep(mStep);
+            if (savedInstanceState != null && savedInstanceState.getLong(getString(R.string.player_current_position)) != 0) {
+                exoPlayer.seekTo(savedInstanceState.getLong(getString(R.string.player_current_position)));
+                exoPlayer.setPlayWhenReady(savedInstanceState.getBoolean(getString(R.string.player_state)));
+            }
         }
     }
 
@@ -69,7 +84,7 @@ public class ExoPlayerFragment extends BaseFragment<FragmentExoPlayerBinding> {
         MediaSource mediaSource = buildMediaSource(uri);
         exoPlayer.prepare(mediaSource, true, false);
         exoPlayer.prepare(mediaSource);
-        exoPlayer.setPlayWhenReady(false);
+        exoPlayer.setPlayWhenReady(true);
     }
 
     private MediaSource buildMediaSource(Uri uri) {

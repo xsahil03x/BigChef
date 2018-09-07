@@ -33,15 +33,20 @@ public class Recipe {
     @SerializedName("servings")
     @Expose
     private int servings;
+
+    private String time;
+    private String calorie;
     private int imageId;
 
     @ParcelConstructor
-    public Recipe(int id, String name, List<Ingredient> ingredients, List<Step> steps, int servings, int imageId) {
+    public Recipe(int id, String name, List<Ingredient> ingredients, List<Step> steps, int servings, String time, String calorie, int imageId) {
         this.id = id;
         this.name = name;
         this.ingredients = ingredients;
         this.steps = steps;
         this.servings = servings;
+        this.time = time;
+        this.calorie = calorie;
         this.imageId = imageId;
     }
 
@@ -54,6 +59,14 @@ public class Recipe {
                 .dontAnimate()
                 .apply(RequestOptions.bitmapTransform(new RoundedCorners(8)))
                 .into(view);
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
 
@@ -89,12 +102,12 @@ public class Recipe {
         this.steps = steps;
     }
 
-    public int getServings() {
-        return servings;
+    public String getCalorie() {
+        return calorie;
     }
 
-    public void setServings(int servings) {
-        this.servings = servings;
+    public void setCalorie(String calorie) {
+        this.calorie = calorie;
     }
 
     public int getImageId() {
@@ -103,5 +116,13 @@ public class Recipe {
 
     public void setImageId(int imageId) {
         this.imageId = imageId;
+    }
+
+    public int getServings() {
+        return servings;
+    }
+
+    public void setServings(int servings) {
+        this.servings = servings;
     }
 }
