@@ -8,6 +8,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.Toast;
 
 import com.magarex.bigchef.R;
 import com.magarex.bigchef.databinding.ActivityExoPlayerBinding;
@@ -38,12 +39,12 @@ public class ExoPlayerActivity extends BaseActivity<ActivityExoPlayerBinding> {
         stepList = Objects.requireNonNull(getIntent().getExtras()).getParcelableArrayList("step");
         position = getIntent().getExtras().getInt("position");
         orientation = getResources().getConfiguration().orientation;
-        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            getBinding().groupNavigation.setVisibility(View.GONE);
-            ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) getBinding().fragmentViewPager.getLayoutParams();
-            params.height = ConstraintLayout.LayoutParams.MATCH_PARENT;
-        }
         if (stepList != null) {
+            if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                getBinding().groupNavigation.setVisibility(View.GONE);
+                ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) getBinding().fragmentViewPager.getLayoutParams();
+                params.height = ConstraintLayout.LayoutParams.MATCH_PARENT;
+            }
             if (getBinding().toolbarRecipe != null) {
                 getBinding().toolbarRecipe.setTitle(getIntent().getExtras().getString("recipeName"));
             }
@@ -97,4 +98,15 @@ public class ExoPlayerActivity extends BaseActivity<ActivityExoPlayerBinding> {
         return R.layout.activity_exo_player;
     }
 
+    public void onBack(View view) {
+        if (fragmentViewPager.getCurrentItem() != 0) {
+            fragmentViewPager.setCurrentItem(fragmentViewPager.getCurrentItem() - 1);
+        }
+    }
+
+    public void onNext(View view) {
+        if (fragmentViewPager.getCurrentItem() != stepList.size() - 1) {
+            fragmentViewPager.setCurrentItem(fragmentViewPager.getCurrentItem() + 1);
+        }
+    }
 }
