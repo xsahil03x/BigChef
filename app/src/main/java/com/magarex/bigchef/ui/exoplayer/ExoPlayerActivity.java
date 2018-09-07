@@ -93,6 +93,8 @@ public class ExoPlayerActivity extends BaseActivity<ActivityExoPlayerBinding> {
         });
     }
 
+
+
     @Override
     protected int provideLayout() {
         return R.layout.activity_exo_player;

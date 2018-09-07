@@ -83,7 +83,6 @@ public class ExoPlayerFragment extends BaseFragment<FragmentExoPlayerBinding> {
         Uri uri = Uri.parse(mStep.getVideoURL());
         MediaSource mediaSource = buildMediaSource(uri);
         exoPlayer.prepare(mediaSource, true, false);
-        exoPlayer.prepare(mediaSource);
         exoPlayer.setPlayWhenReady(true);
     }
 
@@ -154,6 +153,21 @@ public class ExoPlayerFragment extends BaseFragment<FragmentExoPlayerBinding> {
         super.onResume();
         if (exoPlayer == null) {
             initializePlayer();
+        }
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (this.isVisible()) {
+            if (!isVisibleToUser) {
+                exoPlayer.setPlayWhenReady(false);
+                exoPlayer.getPlaybackState();
+            }
+            if (isVisibleToUser) {
+                exoPlayer.setPlayWhenReady(true);
+                exoPlayer.getPlaybackState();
+            }
         }
     }
 }
