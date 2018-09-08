@@ -15,16 +15,4 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppThemeDetails.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppThemeDetails.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
-    <style name="CustomPlayButton" parent="ExoMediaButton.Pause">
-        <item name="android:src">@drawable/ic_play_circle_outline_white_60dp</item>
-    </style>
-
-    <style name="CustomPauseButton" parent="ExoMediaButton.Pause">
-        <item name="android:src">@drawable/ic_pause_circle_outline_white_60dp</item>
-    </style>
-
 </resources>

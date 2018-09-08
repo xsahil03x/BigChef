@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
@@ -26,15 +27,16 @@ import com.magarex.bigchef.databinding.FragmentExoPlayerBinding;
 import com.magarex.bigchef.model.Step;
 import com.magarex.bigchef.ui.base.BaseFragment;
 
+import java.util.List;
 import java.util.Objects;
 
 public class ExoPlayerFragment extends BaseFragment<FragmentExoPlayerBinding> {
 
     private Step mStep;
     private SimpleExoPlayer exoPlayer;
+    private Boolean isTablet = false;
 
     public ExoPlayerFragment() {
-
     }
 
     @Override
@@ -54,22 +56,31 @@ public class ExoPlayerFragment extends BaseFragment<FragmentExoPlayerBinding> {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         if (mStep != null) {
-            getDataBinding().setStep(mStep);
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                Objects.requireNonNull(getActivity()).getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                        WindowManager.LayoutParams.FLAG_FULLSCREEN);
-                getDataBinding().exoGroup.setVisibility(View.GONE);
-                ConstraintLayout.LayoutParams exoParams = (ConstraintLayout.LayoutParams) getDataBinding().recipePlayerView.getLayoutParams();
-                exoParams.height = ConstraintLayout.LayoutParams.MATCH_CONSTRAINT;
-                ConstraintLayout.LayoutParams errorParams = (ConstraintLayout.LayoutParams) getDataBinding().recipePlayerView.getLayoutParams();
-                errorParams.height = ConstraintLayout.LayoutParams.MATCH_CONSTRAINT;
+            if (!isTablet) {
+                prepareView(savedInstanceState);
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    Objects.requireNonNull(getActivity()).getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                            WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                    getDataBinding().exoGroup.setVisibility(View.GONE);
+                    ConstraintLayout.LayoutParams exoParams = (ConstraintLayout.LayoutParams) getDataBinding().recipePlayerView.getLayoutParams();
+                    exoParams.height = ConstraintLayout.LayoutParams.MATCH_CONSTRAINT;
+                    ConstraintLayout.LayoutParams errorParams = (ConstraintLayout.LayoutParams) getDataBinding().ivError.getLayoutParams();
+                    errorParams.height = ConstraintLayout.LayoutParams.MATCH_CONSTRAINT;
+                }
+            } else {
+                prepareView(savedInstanceState);
             }
-            initializePlayer();
-            getDataBinding().recipePlayerView.setPlayer(exoPlayer);
-            if (savedInstanceState != null && savedInstanceState.getLong(getString(R.string.player_current_position)) != 0) {
-                exoPlayer.seekTo(savedInstanceState.getLong(getString(R.string.player_current_position)));
-                exoPlayer.setPlayWhenReady(savedInstanceState.getBoolean(getString(R.string.player_state)));
-            }
+
+        } else Toast.makeText(getActivity(), "No Steps Available", Toast.LENGTH_SHORT).show();
+    }
+
+    private void prepareView(Bundle savedInstanceState) {
+        getDataBinding().setStep(mStep);
+        initializePlayer();
+        getDataBinding().recipePlayerView.setPlayer(exoPlayer);
+        if (savedInstanceState != null && savedInstanceState.getLong(getString(R.string.player_current_position)) != 0) {
+            exoPlayer.seekTo(savedInstanceState.getLong(getString(R.string.player_current_position)));
+            exoPlayer.setPlayWhenReady(savedInstanceState.getBoolean(getString(R.string.player_state)));
         }
     }
 
@@ -96,6 +107,13 @@ public class ExoPlayerFragment extends BaseFragment<FragmentExoPlayerBinding> {
         this.mStep = step;
     }
 
+    private void releasePlayer() {
+        if (exoPlayer != null) {
+            exoPlayer.stop();
+            exoPlayer.release();
+        }
+    }
+
     @Override
     protected int provideLayout() {
         return R.layout.fragment_exo_player;
@@ -109,6 +127,10 @@ public class ExoPlayerFragment extends BaseFragment<FragmentExoPlayerBinding> {
             outState.putBoolean(getString(R.string.player_state), exoPlayer.getPlayWhenReady());
         }
         outState.putParcelable(getString(R.string.steps), mStep);
+    }
+
+    public void setTablet(Boolean tablet) {
+        isTablet = tablet;
     }
 
     @Override
@@ -138,13 +160,6 @@ public class ExoPlayerFragment extends BaseFragment<FragmentExoPlayerBinding> {
         super.onStop();
         if (Build.VERSION.SDK_INT >= 24) {
             releasePlayer();
-        }
-    }
-
-    private void releasePlayer() {
-        if (exoPlayer != null) {
-            exoPlayer.stop();
-            exoPlayer.release();
         }
     }
 

@@ -8,7 +8,6 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.Toast;
 
 import com.magarex.bigchef.R;
 import com.magarex.bigchef.databinding.ActivityExoPlayerBinding;
@@ -22,9 +21,7 @@ import java.util.Objects;
 public class ExoPlayerActivity extends BaseActivity<ActivityExoPlayerBinding> {
 
     private List<Step> stepList;
-    private int position;
-    private ExoFragmentPlayerAdapter mAdapter;
-    private FragmentManager fragmentManager;
+    private int stepPosition;
     private ViewPager fragmentViewPager;
     private int orientation;
 
@@ -37,7 +34,7 @@ public class ExoPlayerActivity extends BaseActivity<ActivityExoPlayerBinding> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         stepList = Objects.requireNonNull(getIntent().getExtras()).getParcelableArrayList("step");
-        position = getIntent().getExtras().getInt("position");
+        stepPosition = getIntent().getExtras().getInt("stepPosition");
         orientation = getResources().getConfiguration().orientation;
         if (stepList != null) {
             if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -60,12 +57,12 @@ public class ExoPlayerActivity extends BaseActivity<ActivityExoPlayerBinding> {
     }
 
     private void prepareView() {
-        fragmentManager = getSupportFragmentManager();
-        mAdapter = new ExoFragmentPlayerAdapter(fragmentManager, stepList);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        ExoFragmentPlayerAdapter mAdapter = new ExoFragmentPlayerAdapter(fragmentManager, stepList);
         fragmentViewPager = getBinding().fragmentViewPager;
         fragmentViewPager.setAdapter(mAdapter);
         fragmentViewPager.setOffscreenPageLimit(0);
-        fragmentViewPager.setCurrentItem(position);
+        fragmentViewPager.setCurrentItem(stepPosition);
         fragmentViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -92,8 +89,6 @@ public class ExoPlayerActivity extends BaseActivity<ActivityExoPlayerBinding> {
             }
         });
     }
-
-
 
     @Override
     protected int provideLayout() {

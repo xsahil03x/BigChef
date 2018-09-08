@@ -63,9 +63,8 @@ public class RecipeStepAdapter extends RecyclerView.Adapter<RecipeStepAdapter.St
 
         @Override
         public void onClick(View v) {
-            ArrayList<Step> steps = new ArrayList<>();
-            steps.addAll(mSteps);
-            stepItemClickListener.onClick(steps,getAdapterPosition());
+            ArrayList<Step> steps = new ArrayList<>(mSteps);
+            stepItemClickListener.onClick(steps, getAdapterPosition());
         }
     }
 }
