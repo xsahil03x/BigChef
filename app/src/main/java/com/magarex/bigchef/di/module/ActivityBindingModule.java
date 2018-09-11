@@ -9,6 +9,7 @@ import com.magarex.bigchef.ui.exoplayer.ExoPlayerActivity;
 import com.magarex.bigchef.ui.detail.RecipeDetailActivity;
 import com.magarex.bigchef.ui.exoplayer.ExoPlayerFragment;
 import com.magarex.bigchef.ui.main.RecipeActivity;
+import com.magarex.bigchef.ui.widget.IngredientListWidgetService;
 import com.magarex.bigchef.ui.widget.RecipeIngredientWidget;
 
 import dagger.Module;
@@ -50,7 +51,7 @@ public abstract class ActivityBindingModule {
 
     // Services
 
-//    @PerService
-//    @ContributesAndroidInjector()
-//    public abstract IngredientsListWidgetService bindIngredientsListWidgetService();
+    @PerService
+    @ContributesAndroidInjector()
+    public abstract IngredientListWidgetService bindIngredientListWidgetService();
 }

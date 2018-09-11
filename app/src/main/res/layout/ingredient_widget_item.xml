@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
@@ -9,18 +10,24 @@
         android:id="@+id/tvIngredientName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="4"
+        android:layout_weight="3.8"
         android:gravity="start"
-        android:padding="8dp"
-        android:text="Salt" />
+        android:padding="4dp"
+        android:textColor="@color/material_color_black_87_percent"
+        android:textSize="12sp"
+        tools:text="Salt" />
 
     <TextView
         android:id="@+id/tvIngredientQuantity"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:padding="8dp"
-        android:text="2 Sp" />
+        android:layout_weight="1.2"
+        android:gravity="end"
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="4dp"
+        android:textColor="@color/material_color_black_87_percent"
+        android:textSize="10sp"
+        tools:text="2 Sp" />
 
 </LinearLayout>

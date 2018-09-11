@@ -58,7 +58,7 @@ public class IngredientViewsFactory implements RemoteViewsService.RemoteViewsFac
         RemoteViews rv = new RemoteViews(mContext.getPackageName(), R.layout
                 .ingredient_widget_item);
         rv.setTextViewText(R.id.tvIngredientName, ingredient.getIngredient());
-        rv.setTextViewText(R.id.tvIngredientQuantity, ingredient.getQuantity() + ingredient.getMeasure());
+        rv.setTextViewText(R.id.tvIngredientQuantity, ingredient.getQuantity() +" "+ ingredient.getMeasure());
         return rv;
     }
 

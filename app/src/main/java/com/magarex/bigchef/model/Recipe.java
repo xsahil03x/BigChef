@@ -125,4 +125,9 @@ public class Recipe {
     public void setServings(int servings) {
         this.servings = servings;
     }
+
+    @Override
+    public String toString() {
+        return name+" "+id;
+    }
 }
