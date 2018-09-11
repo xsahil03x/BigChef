@@ -36,12 +36,11 @@ public class RecipeActivity extends BaseActivity<ActivityRecipeBinding> implemen
 
     @Inject
     PreferenceRepository preferenceRepository;
-    private static final String TAG = "RecipeActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         prepareRecyclerView();
-        Log.i(TAG, "onCreate: "+(getIntent().getExtras() == null));
         if (getIntent().getExtras() != null) {
             widgetId = getIntent().getExtras().getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
             isFromWidget = widgetId != AppWidgetManager.INVALID_APPWIDGET_ID;

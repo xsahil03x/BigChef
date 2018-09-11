@@ -39,15 +39,9 @@ public class RecipeIngredientWidget extends AppWidgetProvider {
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
                 R.layout.recipe_ingredient_widget);
 
-        // launch app when button is clicked
-        Intent appOpenIntent = new Intent(context, RecipeActivity.class);
-        appOpenIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-        PendingIntent addIngredientPi = PendingIntent.getActivity(context, 0, appOpenIntent, 0);
-        remoteViews.setOnClickPendingIntent(R.id.btnAddIngredient, addIngredientPi);
-
         setViews(context, remoteViews, appWidgetId, recipe);
 
-        // Instruct the widget manager to update the widget
+        // Instruct the appwidget_preview manager to update the appwidget_preview
         appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
     }
 
@@ -55,15 +49,9 @@ public class RecipeIngredientWidget extends AppWidgetProvider {
         if (recipe == null) {
             Timber.d("Recipe is null");
         } else {
-            remoteViews.setViewVisibility(R.id.btnAddIngredient, View.GONE);
-            remoteViews.setViewVisibility(R.id.layoutRecipeWidget, View.VISIBLE);
-
             remoteViews.setTextViewText(R.id.tvRecipeName, recipe.getName());
 
-            Intent listViewIntent = new Intent(context, IngredientListWidgetService.class);
-            listViewIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-            listViewIntent.setData(Uri.parse(listViewIntent.toUri(Intent.URI_INTENT_SCHEME)));
-            remoteViews.setRemoteAdapter(R.id.lvRecipeIngredient, listViewIntent);
+            remoteViews.setRemoteAdapter(R.id.lvRecipeIngredient, IngredientListWidgetService.createIntent(context, appWidgetId));
 
             AppWidgetTarget appWidgetTarget = new AppWidgetTarget(context, R.id.ivRecipe, remoteViews, appWidgetId) {
                 @Override

@@ -8,16 +8,15 @@
     <RelativeLayout
         android:id="@+id/layoutRecipeWidget"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/ivRecipe"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="12dp"
             android:elevation="4dp"
             android:scaleType="centerCrop"
             tools:srcCompat="@drawable/cheesecake" />
@@ -29,42 +28,20 @@
             android:layout_below="@id/ivRecipe"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="4dp"
-            android:textColor="@color/colorAccent"
+            android:textColor="#F0785A"
             android:textSize="18sp"
             android:textStyle="bold"
             tools:text="Cheese Cake" />
-
-        <TextView
-            android:id="@+id/tvIngredient"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tvRecipeName"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Ingredients"
-            android:textColor="@color/colorAccent"
-            android:textSize="14sp"
-            android:textStyle="bold" />
 
         <ListView
             android:id="@+id/lvRecipeIngredient"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/tvIngredient"
+            android:layout_below="@id/tvRecipeName"
+            android:layout_marginTop="8dp"
             android:padding="4dp"
             android:scrollbars="none" />
 
     </RelativeLayout>
-
-    <Button
-        android:id="@+id/btnAddIngredient"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="24dp"
-        android:background="@drawable/circle_ingredients_background"
-        android:text="Tap To Add Recipe"
-        android:textColor="@color/white_yellow"
-        android:visibility="visible" />
 
 </FrameLayout>
