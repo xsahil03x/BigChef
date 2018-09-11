@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.magarex.bigchef.api.RecipeService;
+import com.magarex.bigchef.repository.PreferenceRepository;
 import com.magarex.bigchef.repository.RecipeRepository;
 import com.magarex.bigchef.viewmodel.RecipeViewModel;
 
@@ -32,6 +33,12 @@ public abstract class AppModule {
     @Singleton
     static Gson provideGson() {
         return new GsonBuilder().create();
+    }
+
+    @Provides
+    @Singleton
+    static PreferenceRepository providePreferenceRepository(SharedPreferences sharedPreferences, Gson gson) {
+        return new PreferenceRepository(sharedPreferences, gson);
     }
 
     @Provides
@@ -67,4 +74,5 @@ public abstract class AppModule {
     static RecipeViewModel provideRecipeViewModel(RecipeRepository recipeRepository) {
         return new RecipeViewModel(recipeRepository);
     }
+
 }

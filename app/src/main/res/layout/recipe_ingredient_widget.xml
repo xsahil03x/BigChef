@@ -1,0 +1,64 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_background"
+    android:padding="@dimen/widget_margin">
+
+    <Button
+        android:id="@+id/btnAddIngredient"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="24dp"
+        android:background="@drawable/circle_ingredients_background"
+        android:text="Tap To Add Recipe"
+        android:textColor="@color/white_yellow"
+        android:visibility="visible" />
+
+    <RelativeLayout
+        android:id="@+id/layoutRecipeWidget"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/ivRecipe"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/circle_ingredients_background"
+            android:scaleType="centerCrop"
+            tools:srcCompat="@drawable/cheesecake" />
+
+        <TextView
+            android:id="@+id/tvRecipeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ivRecipe"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:textSize="24sp"
+            tools:text="Cheese Cake" />
+
+        <TextView
+            android:id="@+id/tvIngredient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvRecipeName"
+            android:layout_marginTop="8dp"
+            android:text="Ingredients"
+            android:textSize="18sp" />
+
+        <ListView
+            android:id="@+id/lvRecipeIngredient"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tvIngredient"
+            android:layout_marginTop="8dp" />
+
+    </RelativeLayout>
+
+</FrameLayout>

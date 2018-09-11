@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.magarex.bigchef.R;
-import com.magarex.bigchef.databinding.FragmentActivityDetailBinding;
+import com.magarex.bigchef.databinding.FragmentRecipeDetailBinding;
 import com.magarex.bigchef.model.Recipe;
 import com.magarex.bigchef.model.Step;
 import com.magarex.bigchef.ui.base.BaseFragment;
@@ -25,7 +25,7 @@ import com.magarex.bigchef.ui.exoplayer.ExoPlayerFragment;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class RecipeDetailFragment extends BaseFragment<FragmentActivityDetailBinding> implements StepItemClickListener {
+public class RecipeDetailFragment extends BaseFragment<FragmentRecipeDetailBinding> implements StepItemClickListener {
 
     private RecipeIngredientsAdapter ingredientsAdapter;
     private RecipeStepAdapter stepAdapter;
@@ -85,7 +85,7 @@ public class RecipeDetailFragment extends BaseFragment<FragmentActivityDetailBin
 
     @Override
     protected int provideLayout() {
-        return R.layout.fragment_activity_detail;
+        return R.layout.fragment_recipe_detail;
     }
 
     @Override
@@ -94,7 +94,7 @@ public class RecipeDetailFragment extends BaseFragment<FragmentActivityDetailBin
             Intent intent = new Intent(getActivity(), ExoPlayerActivity.class);
             Bundle recipeData = new Bundle();
             recipeData.putParcelableArrayList("step", step);
-            recipeData.putInt("position", position);
+            recipeData.putInt("stepPosition", position);
             recipeData.putString("recipeName", recipe.getName());
             recipeData.putBoolean("isTablet", isTablet);
             intent.putExtras(recipeData);
