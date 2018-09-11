@@ -34,6 +34,7 @@ ext {
     constraint_layout_version = '1.1.2'
     lifecycle_version = '1.1.1'
     glide_version = '4.7.1'
+    glide_transformation_version = '3.3.0'
     shimmer_layout_version = '0.2.0'
     material_values_version = '1.1.1'
     timber_version = '4.7.1'

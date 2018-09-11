@@ -126,8 +126,4 @@ public class Recipe {
         this.servings = servings;
     }
 
-    @Override
-    public String toString() {
-        return name+" "+id;
-    }
 }

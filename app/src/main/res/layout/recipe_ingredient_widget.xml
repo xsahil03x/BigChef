@@ -28,7 +28,7 @@
             android:layout_below="@id/ivRecipe"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="4dp"
-            android:textColor="#F0785A"
+            android:textColor="@color/material_red"
             android:textSize="18sp"
             android:textStyle="bold"
             tools:text="Cheese Cake" />

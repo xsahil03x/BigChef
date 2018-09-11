@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="Recipe"
             type="com.magarex.bigchef.model.Recipe" />
@@ -65,6 +64,32 @@
                 app:layout_constraintVertical_bias="0.333"
                 tools:text="Vada Pav" />
 
+            <!--<ImageView-->
+            <!--android:id="@+id/imageView3"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="206dp"-->
+            <!--android:scaleType="centerCrop"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="parent"-->
+            <!--app:srcCompat="@drawable/cheesecake" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/textView2"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="32dp"-->
+            <!--android:layout_marginEnd="32dp"-->
+            <!--android:layout_marginStart="32dp"-->
+            <!--android:layout_marginTop="32dp"-->
+            <!--android:textColor="@android:color/white"-->
+            <!--android:textSize="30sp"-->
+            <!--app:layout_constraintBottom_toBottomOf="@+id/imageView3"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintHorizontal_bias="0.504"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="@+id/imageView3"-->
+            <!--tools:text="YELLOW CAKE" />-->
         </android.support.constraint.ConstraintLayout>
 
     </android.support.v7.widget.CardView>

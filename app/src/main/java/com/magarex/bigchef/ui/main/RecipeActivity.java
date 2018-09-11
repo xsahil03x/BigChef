@@ -2,6 +2,7 @@ package com.magarex.bigchef.ui.main;
 
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
@@ -57,10 +58,11 @@ public class RecipeActivity extends BaseActivity<ActivityRecipeBinding> implemen
     }
 
     private void prepareRecyclerView() {
+        int recyclerViewSpanCount = getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT ? 1 : 2;
         recipeAdapter = new RecipeAdapter(this);
         RecyclerView rvRecipes = getBinding().rvRecipes;
-        rvRecipes.setLayoutManager(new GridLayoutManager(RecipeActivity.this, 1));
-        rvRecipes.addItemDecoration(new GridSpacingItemDecoration(1, dpToPx(this), true));
+        rvRecipes.setLayoutManager(new GridLayoutManager(RecipeActivity.this, recyclerViewSpanCount));
+        rvRecipes.addItemDecoration(new GridSpacingItemDecoration(recyclerViewSpanCount, dpToPx(this), true));
         rvRecipes.setItemAnimator(new DefaultItemAnimator());
         rvRecipes.setAdapter(recipeAdapter);
         rvRecipes.setHasFixedSize(true);
