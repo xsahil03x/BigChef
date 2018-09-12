@@ -9,9 +9,4 @@
         <item name="android:fontFamily">@font/nunito_bold</item>
     </style>
 
-    <style name="AppThemeDetails" parent="AppTheme">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
 </resources>

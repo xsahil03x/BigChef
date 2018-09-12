@@ -19,9 +19,9 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbarRecipe"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:titleTextColor="@color/material_color_white"
-                tools:title="@string/app_name">
+                android:layout_height="?attr/actionBarSize"
+                app:title="@string/app_name"
+                app:titleTextColor="@color/material_color_white">
 
             </android.support.v7.widget.Toolbar>
 

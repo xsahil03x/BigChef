@@ -24,13 +24,12 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity
-            android:name=".ui.detail.RecipeDetailActivity"
-            android:parentActivityName=".ui.main.RecipeActivity" />
+        <activity android:name=".ui.detail.RecipeDetailActivity" />
 
         <activity android:name=".ui.exoplayer.ExoPlayerActivity" />
 
-        <receiver android:name=".ui.widget.RecipeIngredientWidget"
+        <receiver
+            android:name=".ui.widget.RecipeIngredientWidget"
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />

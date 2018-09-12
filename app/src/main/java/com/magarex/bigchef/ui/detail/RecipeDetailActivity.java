@@ -1,6 +1,7 @@
 package com.magarex.bigchef.ui.detail;
 
 import android.os.Bundle;
+import android.view.WindowManager;
 
 
 import com.magarex.bigchef.R;
@@ -13,6 +14,7 @@ import com.magarex.bigchef.ui.exoplayer.ExoPlayerFragment;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class RecipeDetailActivity extends BaseActivity<ActivityRecipeDetailBinding> {
@@ -31,6 +33,9 @@ public class RecipeDetailActivity extends BaseActivity<ActivityRecipeDetailBindi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Recipe recipe = Parcels.unwrap(getIntent().getParcelableExtra("recipe"));
+        if (getBinding().toolbarRecipeDetail != null) {
+            getBinding().toolbarRecipeDetail.setTitle(recipe.getName());
+        }
         steps = (ArrayList<Step>) recipe.getSteps();
         recipeDetailFragment = new RecipeDetailFragment();
         recipeDetailFragment.setRecipe(recipe);
