@@ -12,12 +12,12 @@
 
         <ImageView
             android:id="@+id/ivRecipe"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
+            android:layout_width="@dimen/widget_imageview_size"
+            android:layout_height="@dimen/widget_imageview_size"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="12dp"
-            android:elevation="4dp"
+            android:layout_marginTop="@dimen/margin_12dp"
+            android:elevation="@dimen/margin_4dp"
             android:scaleType="centerCrop"
             tools:srcCompat="@drawable/cheesecake" />
 
@@ -27,9 +27,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/ivRecipe"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="@dimen/margin_4dp"
             android:textColor="@color/material_red"
-            android:textSize="18sp"
+            android:textSize="@dimen/textsize_18sp"
             android:textStyle="bold"
             tools:text="Cheese Cake" />
 
@@ -38,8 +38,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/tvRecipeName"
-            android:layout_marginTop="8dp"
-            android:padding="4dp"
+            android:layout_marginTop="@dimen/margin_8dp"
+            android:padding="@dimen/margin_4dp"
             android:scrollbars="none" />
 
     </RelativeLayout>

@@ -115,5 +115,4 @@ public class RecipeDetailActivityTest {
         recipe = null;
         mActivityTestRule.getActivity().getSupportFragmentManager().beginTransaction().remove(recipeDetailFragment).commit();
     }
-
 }

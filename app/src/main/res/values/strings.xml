@@ -5,4 +5,6 @@
     <string name="steps">steps</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
+    <string name="txt_preparation_steps">Preparation Steps</string>
+    <string name="txt_ingredients">Ingredients</string>
 </resources>
