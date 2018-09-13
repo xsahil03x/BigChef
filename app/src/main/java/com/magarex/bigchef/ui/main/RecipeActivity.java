@@ -4,10 +4,15 @@ import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
+import android.support.test.espresso.IdlingResource;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 
 import com.magarex.bigchef.R;
 import com.magarex.bigchef.databinding.ActivityRecipeBinding;
@@ -17,6 +22,7 @@ import com.magarex.bigchef.ui.base.BaseActivity;
 import com.magarex.bigchef.ui.detail.RecipeDetailActivity;
 import com.magarex.bigchef.ui.widget.RecipeIngredientWidget;
 import com.magarex.bigchef.util.GridSpacingItemDecoration;
+import com.magarex.bigchef.util.RecipeIdlingResource;
 import com.magarex.bigchef.viewmodel.RecipeViewModel;
 
 
@@ -32,6 +38,9 @@ public class RecipeActivity extends BaseActivity<ActivityRecipeBinding> implemen
     private Boolean isFromWidget = false;
     private int widgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
 
+    @Nullable
+    private RecipeIdlingResource mIdlingResource;
+
     @Inject
     RecipeViewModel recipeViewModel;
 
@@ -41,6 +50,7 @@ public class RecipeActivity extends BaseActivity<ActivityRecipeBinding> implemen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         prepareRecyclerView();
         if (getIntent().getExtras() != null) {
             widgetId = getIntent().getExtras().getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
@@ -50,11 +60,22 @@ public class RecipeActivity extends BaseActivity<ActivityRecipeBinding> implemen
     }
 
     private void loadRecipes() {
+
+        if (mIdlingResource != null) {
+            mIdlingResource.setIdleState(false);
+        }
+
         recipeViewModel.getRecipes().observe(this, recipes -> {
             if (recipes != null && recipes.size() != 0) {
                 recipeAdapter.addRecipeToList(recipes);
+                getBinding().rvRecipes.setVisibility(View.VISIBLE);
+                getBinding().progressBar.setVisibility(View.GONE);
             }
         });
+
+        if (mIdlingResource != null) {
+            mIdlingResource.setIdleState(true);
+        }
     }
 
     private void prepareRecyclerView() {
@@ -99,5 +120,14 @@ public class RecipeActivity extends BaseActivity<ActivityRecipeBinding> implemen
         } else {
             updateWidget(recipe);
         }
+    }
+
+    @VisibleForTesting
+    @NonNull
+    public RecipeIdlingResource getIdlingResource() {
+        if (mIdlingResource == null) {
+            mIdlingResource = new RecipeIdlingResource();
+        }
+        return mIdlingResource;
     }
 }

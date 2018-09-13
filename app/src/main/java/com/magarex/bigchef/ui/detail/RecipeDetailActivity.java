@@ -16,7 +16,6 @@ import org.parceler.Parcels;
 import java.util.ArrayList;
 import java.util.Objects;
 
-
 public class RecipeDetailActivity extends BaseActivity<ActivityRecipeDetailBinding> {
 
     private Boolean isTablet;

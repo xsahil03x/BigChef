@@ -29,7 +29,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // Testing
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation "com.android.support.test.espresso:espresso-idling-resource:$espresso_version"
     testImplementation "junit:junit:$junit_version"
     androidTestImplementation "com.android.support.test:runner:$test_version"
     androidTestImplementation "com.android.support.test:rules:$test_version"
