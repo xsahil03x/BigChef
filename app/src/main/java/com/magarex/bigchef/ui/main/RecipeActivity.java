@@ -70,12 +70,14 @@ public class RecipeActivity extends BaseActivity<ActivityRecipeBinding> implemen
                 recipeAdapter.addRecipeToList(recipes);
                 getBinding().rvRecipes.setVisibility(View.VISIBLE);
                 getBinding().progressBar.setVisibility(View.GONE);
+
+                if (mIdlingResource != null) {
+                    mIdlingResource.setIdleState(true);
+                }
             }
         });
 
-        if (mIdlingResource != null) {
-            mIdlingResource.setIdleState(true);
-        }
+
     }
 
     private void prepareRecyclerView() {
