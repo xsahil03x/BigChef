@@ -18,9 +18,10 @@ Constraint Layout.</p>
 - Add Widget
 
 <h2>Screenshots</h2>
-<img src="https://user-images.githubusercontent.com/25670178/45517422-b81db980-b7cb-11e8-9585-e8f1aaecf1f6.png" width="300" height="500"></br>
-<img src="https://user-images.githubusercontent.com/25670178/45517454-ccfa4d00-b7cb-11e8-993d-5f0c653e672a.png" width="300" height="500"></br>
-<img src="https://user-images.githubusercontent.com/25670178/45517456-ce2b7a00-b7cb-11e8-963e-a0c030e766da.png" width="300" height="500"></br>
+
+| Recipe Screen | Detail Screen | ExoPlayer Screen |
+| ------------------ | ------------------ | ------------------ |
+| <img src="https://user-images.githubusercontent.com/25670178/45517422-b81db980-b7cb-11e8-9585-e8f1aaecf1f6.png" height="400" alt="Screenshot"/>  | <img src="https://user-images.githubusercontent.com/25670178/45517454-ccfa4d00-b7cb-11e8-993d-5f0c653e672a.png" height="400" alt="Screenshot"/>  | <img src="https://user-images.githubusercontent.com/25670178/45517456-ce2b7a00-b7cb-11e8-963e-a0c030e766da.png" height="400" alt="Screenshot"/>  |
 
 ## Connect with me on
 <a href="https://www.linkedin.com/in/xsahil03x/" target="_blank">
