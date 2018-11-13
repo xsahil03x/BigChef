@@ -2,13 +2,13 @@ package com.magarex.bigchef.ui.exoplayer;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.magarex.bigchef.model.Step;
 
 import java.util.List;
 
-public class ExoFragmentPlayerAdapter extends FragmentPagerAdapter {
+public class ExoFragmentPlayerAdapter extends FragmentStatePagerAdapter {
 
     private List<Step> stepList;
 
@@ -19,9 +19,7 @@ public class ExoFragmentPlayerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        ExoPlayerFragment exoPlayerFragment = new ExoPlayerFragment();
-        exoPlayerFragment.setStep(stepList.get(position));
-        return exoPlayerFragment;
+        return ExoPlayerFragment.newInstance(stepList.get(position), false);
     }
 
     @Override

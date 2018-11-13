@@ -26,12 +26,15 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/exo_player_height"
             android:visibility="@{Step.videoURL.empty ? View.INVISIBLE : View.VISIBLE}"
+            app:controller_layout_id="@layout/exo_player_control_view"
+            app:fastforward_increment="1000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            app:resize_mode="fill">
+            app:resize_mode="fill"
+            app:rewind_increment="1000">
 
         </com.google.android.exoplayer2.ui.PlayerView>
 
@@ -53,8 +56,8 @@
             android:id="@+id/tvShortDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margin_8dp"
             android:layout_marginTop="@dimen/margin_16dp"
+            android:layout_marginEnd="@dimen/margin_8dp"
             android:text="@{Step.shortDescription}"
             android:textSize="@dimen/textview_22sp"
             app:layout_constraintEnd_toStartOf="@+id/guideline5"
@@ -89,8 +92,8 @@
             android:id="@+id/tvDescription"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="@dimen/margin_16dp"
             android:layout_marginStart="@dimen/margin_8dp"
+            android:layout_marginBottom="@dimen/margin_16dp"
             android:text="@{Step.description.substring(3)}"
             android:textSize="@dimen/textview_16sp"
             android:textStyle="bold"

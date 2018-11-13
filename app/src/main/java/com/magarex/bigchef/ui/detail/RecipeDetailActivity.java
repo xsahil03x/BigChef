@@ -1,7 +1,6 @@
 package com.magarex.bigchef.ui.detail;
 
 import android.os.Bundle;
-import android.view.WindowManager;
 
 
 import com.magarex.bigchef.R;
@@ -14,7 +13,6 @@ import com.magarex.bigchef.ui.exoplayer.ExoPlayerFragment;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class RecipeDetailActivity extends BaseActivity<ActivityRecipeDetailBinding> {
 
@@ -49,10 +47,8 @@ public class RecipeDetailActivity extends BaseActivity<ActivityRecipeDetailBindi
     }
 
     private void replaceExoPlayerFrame() {
-        exoPlayerFragment.setStep(steps.get(0));
-        exoPlayerFragment.setTablet(isTablet);
         this.getSupportFragmentManager().beginTransaction()
-                .replace(getBinding().frameExoPlayer.getId(), exoPlayerFragment)
+                .replace(getBinding().frameExoPlayer.getId(), ExoPlayerFragment.newInstance(steps.get(0), isTablet))
                 .commit();
     }
 

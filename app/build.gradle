@@ -72,14 +72,13 @@ dependencies {
     // ShimmerView
     implementation "com.facebook.shimmer:shimmer:$shimmer_layout_version"
 
-    // Timeline View
-    implementation "com.github.vipulasri:timelineview:$timeline_view_version"
-
     // Timber
     implementation "com.jakewharton.timber:timber:$timber_version"
 
     // ExoPlayer
     implementation "com.google.android.exoplayer:exoplayer:$exo_player_version"
+    implementation "com.github.rubensousa:previewseekbar-exoplayer:$preview_seekbar_exo_version"
+    implementation "com.github.rubensousa:previewseekbar:$preview_seekbar_version"
 
     // Parceler
     implementation "org.parceler:parceler-api:$parceler_version"

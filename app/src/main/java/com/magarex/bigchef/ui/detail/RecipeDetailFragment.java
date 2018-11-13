@@ -100,11 +100,8 @@ public class RecipeDetailFragment extends BaseFragment<FragmentRecipeDetailBindi
             intent.putExtras(recipeData);
             startActivity(intent);
         } else {
-            ExoPlayerFragment fragment = new ExoPlayerFragment();
-            fragment.setStep(step.get(position));
-            fragment.setTablet(isTablet);
             getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.frameExoPlayer, fragment)
+                    .replace(R.id.frameExoPlayer, ExoPlayerFragment.newInstance(step.get(position), isTablet))
                     .commit();
         }
     }

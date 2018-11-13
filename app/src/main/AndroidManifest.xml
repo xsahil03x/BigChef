@@ -25,7 +25,9 @@
 
         <activity android:name=".ui.detail.RecipeDetailActivity" />
 
-        <activity android:name=".ui.exoplayer.ExoPlayerActivity" />
+        <activity
+            android:name=".ui.exoplayer.ExoPlayerActivity"
+            android:configChanges="orientation" />
 
         <receiver
             android:name=".ui.widget.RecipeIngredientWidget"

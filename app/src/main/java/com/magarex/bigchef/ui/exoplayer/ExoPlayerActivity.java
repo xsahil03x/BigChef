@@ -26,11 +26,6 @@ public class ExoPlayerActivity extends BaseActivity<ActivityExoPlayerBinding> {
     private int orientation;
 
     @Override
-    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
-        super.onSaveInstanceState(outState, outPersistentState);
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         stepList = Objects.requireNonNull(getIntent().getExtras()).getParcelableArrayList("step");
@@ -60,34 +55,10 @@ public class ExoPlayerActivity extends BaseActivity<ActivityExoPlayerBinding> {
         FragmentManager fragmentManager = getSupportFragmentManager();
         ExoFragmentPlayerAdapter mAdapter = new ExoFragmentPlayerAdapter(fragmentManager, stepList);
         fragmentViewPager = getBinding().fragmentViewPager;
+        fragmentViewPager.setOffscreenPageLimit(1);
         fragmentViewPager.setAdapter(mAdapter);
-        fragmentViewPager.setOffscreenPageLimit(0);
         fragmentViewPager.setCurrentItem(stepPosition);
-        fragmentViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                if (getBinding().currentStep != null) {
-                    getBinding().currentStep.setText("Step " + (position + 1));
-                    if (position == 0) {
-                        getBinding().btnBack.setEnabled(false);
-                    } else if (position == stepList.size() - 1) {
-                        getBinding().btnNext.setEnabled(false);
-                    } else {
-                        getBinding().btnBack.setEnabled(true);
-                        getBinding().btnNext.setEnabled(true);
-                    }
-                }
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
+        fragmentViewPager.addOnPageChangeListener(new pageChangeListener());
     }
 
     @Override
@@ -106,4 +77,32 @@ public class ExoPlayerActivity extends BaseActivity<ActivityExoPlayerBinding> {
             fragmentViewPager.setCurrentItem(fragmentViewPager.getCurrentItem() + 1);
         }
     }
+
+    private class pageChangeListener implements ViewPager.OnPageChangeListener {
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+            if (getBinding().currentStep != null) {
+                getBinding().currentStep.setText("Step " + (position + 1));
+                if (position == 0) {
+                    getBinding().btnBack.setEnabled(false);
+                } else if (position == stepList.size() - 1) {
+                    getBinding().btnNext.setEnabled(false);
+                } else {
+                    getBinding().btnBack.setEnabled(true);
+                    getBinding().btnNext.setEnabled(true);
+                }
+            }
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+
+        }
+    }
+
 }
