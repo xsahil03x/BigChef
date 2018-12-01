@@ -10,7 +10,7 @@ public class Step implements Parcelable {
 
     @SerializedName("id")
     @Expose
-    private Integer id;
+    private int id;
     @SerializedName("shortDescription")
     @Expose
     private String shortDescription;
@@ -26,7 +26,7 @@ public class Step implements Parcelable {
 
     private Step(Parcel in) {
         if (in.readByte() == 0) {
-            id = null;
+            id = -1;
         } else {
             id = in.readInt();
         }
@@ -75,7 +75,7 @@ public class Step implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        if (id == null) {
+        if (id == -1) {
             parcel.writeByte((byte) 0);
         } else {
             parcel.writeByte((byte) 1);
